@@ -15,7 +15,7 @@ pool.on('error', (err) => {
 
 async function loadDB(query) {
     // async/await - check out a client
-    ; (async () => {
+    await (async () => {
         const client = await pool.connect();
         let res;
         try {
