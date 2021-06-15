@@ -24,8 +24,9 @@ cmd = async (client, message, args) => {
 
             await dbClient.connect();
             const res = await dbClient.query("SELECT * FROM supper;")
-            console.log(res.rows.length);
             await dbClient.end();
+
+            console.log(res.rows.length);
             //loadDB(dbClient, "SELECT * FROM supper");
 
             let time = args.shift();
