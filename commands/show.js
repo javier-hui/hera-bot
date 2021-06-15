@@ -1,6 +1,6 @@
 const Discord = require('discord.js'),
 
-    { loadDB } = require('../utils/loadDB')(),
+    { loadDB } = require('../utils/loadDB'),
     { Client } = require('pg'),
     dbClient = new Client({
         connectionString: process.env.DATABASE_URL,
@@ -22,14 +22,13 @@ cmd = async (client, message, args) => {
         case 'din':
         case 'dinner':
             const query = `SELECT DISTINCT name, at_home, reason FROM supper WHERE weekday = ${(new Date).getDay()} AND dinner = TRUE;`;
-            const res = await loadDB(query);
+            const res = loadDB(query).then(console.log(res));
         /*
             await dbClient.connect();
             const query = `SELECT DISTINCT name, at_home, reason FROM supper WHERE weekday = ${(new Date).getDay()} AND dinner = TRUE;`,
                 res = await dbClient.query(query);
             await dbClient.end();
         */
-        console.log(res);
             console.log(`query executed, ${res.rows.length} rows returned`);
 
             const members = [
