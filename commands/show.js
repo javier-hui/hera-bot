@@ -1,6 +1,6 @@
 const Discord = require('discord.js'),
 
-    { loadDB } = require('../utils/loadDB'),
+    { loadDB } = require('../utils/loadDB')(),
     { Client } = require('pg'),
     dbClient = new Client({
         connectionString: process.env.DATABASE_URL,
