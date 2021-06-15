@@ -30,7 +30,7 @@ cmd = async (client, message, args) => {
                 }
                 console.log(res.rows.length);
             });
-            dbClient.end();
+            await dbClient.end();
             //loadDB(dbClient, "SELECT * FROM supper");
 
             let time = args.shift();
