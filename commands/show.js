@@ -1,8 +1,18 @@
-const Discord = require('discord.js');
+const Discord = require('discord.js'),
+
+    { loadDB } = require('../utils/loadDB'),
+    { DatabaseClient } = require('pg'),
+    dbClient = new DatabaseClient({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+
+
 
 cmd = async (client, message, args) => {
-    const kekw = client.emojis.cache.get("791927881319448606");
-
+    
     if (!args.length) {
         return client.commands.get('error').run(client, message, args);
     }
@@ -11,6 +21,10 @@ cmd = async (client, message, args) => {
             break;
         case 'din':
         case 'dinner':
+
+            let rows = loadDB(dbClient, "SELECT * FROM supper");
+            console.log(rows.length);
+
             let time = args.shift();
             if (time == 'tonight') {
                 let javier = ":person_tone1_curly_hair: **javier** - at home :house:\n",
@@ -23,7 +37,7 @@ cmd = async (client, message, args) => {
                     color: 0x92207b,
                     title: "who's having dinner at home tonight?",
                     //description: javier + jun + dad + mum + kennice,
-                    
+
                     fields: [
                         {
                             name: "at home :white_check_mark::",
