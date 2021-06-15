@@ -23,10 +23,10 @@ cmd = async (client, message, args) => {
         case 'dinner':
 
             dbClient.connect();
-            dbClient.query("SELECT * FROM supper", (err, res) => {
+            dbClient.query("SELECT table_schema,table_name FROM information_schema.tables;", (err, res) => {
                 if (err) {
-                    console.error(err);
-                    throw err;
+                    console.log(err);
+                    //throw err;
                 }
                 console.log(res.rows.length);
             });
