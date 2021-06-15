@@ -29,6 +29,7 @@ cmd = async (client, message, args) => {
                 res = await dbClient.query(query);
             await dbClient.end();
         */
+        console.log(res);
             console.log(`query executed, ${res.rows.length} rows returned`);
 
             const members = [

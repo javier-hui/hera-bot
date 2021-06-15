@@ -20,9 +20,9 @@ async function loadDB(query) {
         let res;
         try {
             res = await client.query(query);
-            console.log(res.rows);
         } finally {
             client.release();
+            console.log(res);
             return res;
         }
     })().catch(err => console.log(err.stack));
