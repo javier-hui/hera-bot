@@ -22,7 +22,7 @@ cmd = async (client, message, args) => {
         case 'din':
         case 'dinner':
             const query = `SELECT DISTINCT name, at_home, reason FROM supper WHERE weekday = ${(new Date).getDay()} AND dinner = TRUE;`;
-            const res = loadDB(query);
+            const res = await loadDB(query);
         /*
             await dbClient.connect();
             const query = `SELECT DISTINCT name, at_home, reason FROM supper WHERE weekday = ${(new Date).getDay()} AND dinner = TRUE;`,

@@ -13,7 +13,7 @@ pool.on('error', (err) => {
     process.exit(-1);
 });
 
-function loadDB(query) {
+async function loadDB(query) {
     // async/await - check out a client
     ; (async () => {
         const client = await pool.connect();
