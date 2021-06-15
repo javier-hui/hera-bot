@@ -15,18 +15,17 @@ pool.on('error', (err) => {
 
 async function loadDB(query) {
     // async/await - check out a client
+    let res;
     await (async () => {
         const client = await pool.connect();
-        let res;
         try {
             res = await client.query(query);
         } finally {
             client.release();
             console.log(res);
-            return res;
         }
     })().catch(err => console.log(err.stack));
-
+    return res;
 }
 
 module.exports = {
