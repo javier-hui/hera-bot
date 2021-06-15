@@ -37,7 +37,7 @@ cmd = async (client, message) => {
 
 
 module.exports = {
-    name: 'error',
+    name: 'help',
     aliases: [],
     run: cmd
 }
