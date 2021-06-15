@@ -9,8 +9,8 @@ cmd = async (client, message) => {
             icon_url: 'https://cdn.discordapp.com/avatars/854011989726199828/3a31c4e747041dc5d5ee7adc85f6fede.webp?size=128',
             url: 'https://youtu.be/dQw4w9WgXcQ',
         },
-        title: "how to use hera",
-        description: `nothing here yet lmao`,
+        title: "how to use me",
+        description: `if u have more questions, ask javier :)`,
         fields: [
             {
                 name: "hera who [lunch/dinner] [today/tonight/tomorrow]",
@@ -21,11 +21,11 @@ cmd = async (client, message) => {
                 value: "shows whether the person would eat at home or not for this week\ne.g. `hera show javier`"
             },
             {
-                name: "hera [no] [lunch/dinner] [weekday] -NOT DONE-",
+                name: "hera [home/no] [lunch/dinner] [weekday] -NOT DONE-",
                 value: "sets a specific rule for that weekday regularly\ne.g. `hera no dinner friday`\ne.g. `hera no dinner tonight`"
             },
             {
-                name: "hera [no] [lunch/dinner] [dd/mm] -NOT DONE-",
+                name: "hera [home/no] [lunch/dinner] [dd/mm] -NOT DONE-",
                 value: "sets a specific rule for that day\ne.g. `hera lunch 13/2` will update your availability for lunch on 13/2\ne.g. `hera no dinner tonight` say this when you can't come home tonight"
             }
         ],
