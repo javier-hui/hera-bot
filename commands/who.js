@@ -71,8 +71,8 @@ cmd = async (client, message, args) => {
 
 
 module.exports = {
-    name: 'show',
-    aliases: ["s"],
+    name: 'who',
+    aliases: [],
     run: cmd
 
 }

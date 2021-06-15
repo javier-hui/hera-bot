@@ -1,12 +1,14 @@
-const Discord = require('discord.js');
+const prefix = process.env.PREFIX || (require('../settings.json')).prefix;
 
 cmd = async (client, message) => {
 
     let embed = {
         color: 0xff0000,
         title: "what 7 u say?",
-        description: `u up what ar ${message.author}`,
-        image: 'https://j.gifs.com/mqwxL0.gif',
+        description: `${message.author} 你好似打錯咗啲嘢喎，唔識用嘅話可以打 ${prefix} help 睇返 :innocent:`,
+        image: {
+            url: 'https://j.gifs.com/mqwxL0.gif'
+        },
         timestamp: new Date()
     }
 
