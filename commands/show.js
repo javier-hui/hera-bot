@@ -30,11 +30,9 @@ cmd = async (client, message, args) => {
         return client.commands.get('error').run(client, message);
     }
 
-    let weekday = (new Date).getDay(), dinner = false, word = 0;
-
     for (let member of members) {
         if (args.includes(member.name)) {
-            const query = `SELECT weekday, dinner, at_home, reason FROM supper WHERE name = ${dinner};`;
+            const query = `SELECT weekday, dinner, at_home, reason FROM supper WHERE name = ${member.name};`;
             const res = await loadDB(query);
 
             if (res == undefined) return;
