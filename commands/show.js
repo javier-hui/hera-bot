@@ -23,41 +23,62 @@ cmd = async (client, message, args) => {
         case 'dinner':
 
             await dbClient.connect();
-            const res = await dbClient.query("SELECT * FROM supper;")
+            const query = `SELECT DISTINCT name, at_home, reason FROM supper WHERE weekday = ${(new Date).getDay()} AND dinner = TRUE;`,
+                res = await dbClient.query(query);
             await dbClient.end();
 
-            console.log(res.rows.length);
-            //loadDB(dbClient, "SELECT * FROM supper");
+            console.log(`query executed, ${res.rows.length} rows returned`);
 
-            let time = args.shift();
-            if (time == 'tonight') {
-                let javier = ":person_tone1_curly_hair: **javier** - at home :house:\n",
-                    jun = ":adult_tone1: **jun** - outside :red_car:\n",
-                    dad = ":man_tone1: **dad** - at home :house:\n",
-                    mum = ":woman_curly_haired_tone1: **mum** - at home :house:\n",
-                    kennice = ":woman_tone1: **kennice** - in uk :flag_gb:\n";
-
-                let embed = {
-                    color: 0x92207b,
-                    title: "who's having dinner at home tonight?",
-                    //description: javier + jun + dad + mum + kennice,
-
-                    fields: [
-                        {
-                            name: "at home :white_check_mark::",
-                            value: javier + dad + mum,
-                            inline: true
-                        },
-                        {
-                            name: "not at home :negative_squared_cross_mark::",
-                            value: jun + kennice,
-                            inline: true
-                        },
-                    ],
-                    timestamp: new Date()
+            const members = [
+                {
+                    name: 'javier',
+                    emoji: ':person_tone1_curly_hair:'
+                },
+                {
+                    name: 'jun',
+                    emoji: ':adult_tone1:'
+                },
+                {
+                    name: 'kennice',
+                    emoji: ':woman_tone1:'
+                },
+                {
+                    name: 'dad',
+                    emoji: ':man_tone1:'
+                },
+                {
+                    name: 'mum',
+                    emoji: ':woman_curly_haired_tone1:'
                 }
-                message.channel.send({ embed: embed });
+            ];
+
+            
+            let embed = {
+                color: 0x92207b,
+                title: "who's having dinner at home tonight?",
+
+                fields: [
+                    {
+                        name: "at home :white_check_mark::",
+                        value: '',
+                        inline: true
+                    },
+                    {
+                        name: "not at home :negative_squared_cross_mark::",
+                        value: '',
+                        inline: true
+                    },
+                ],
+                timestamp: new Date()
             }
+
+            for (let member of members) {
+                let value = `${member.emoji} **${member.name}** - ${res.rows.find(e => e.name == member.name).reason}\n`;
+                if (res.rows.find(e => e.name == member.name).at_home) embed.fields[0].value += value;
+                else embed.fields[1].value += value;
+            }
+            message.channel.send({ embed: embed });
+
             break;
         default:
             return client.commands.get('error').run(client, message, args);
