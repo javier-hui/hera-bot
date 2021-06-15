@@ -1,7 +1,6 @@
 const Discord = require('discord.js'),
     Sequelize = require('sequelize'),
     client = new Discord.Client(),
-    config = require('./settings.json'),
     { loadCommands } = require('./utils/loadCommands'),
     
     sequelize = new Sequelize('database', 'user', 'password', {
@@ -18,4 +17,4 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 loadCommands(client);
 
-client.login(process.env.TOKEN || config.token);
+client.login(process.env.TOKEN || (require('./settings.json')).token);
