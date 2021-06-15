@@ -4,7 +4,7 @@ function loadDB(dbClient, query) {
         if (err) throw err;
         return res.rows;
     });
-    client.end();
+    dbClient.end();
 }
 
 module.exports = {
