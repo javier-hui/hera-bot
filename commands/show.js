@@ -12,7 +12,7 @@ const Discord = require('discord.js'),
 
 
 cmd = async (client, message, args) => {
-    
+
     if (!args.length) {
         return client.commands.get('error').run(client, message, args);
     }
@@ -22,7 +22,13 @@ cmd = async (client, message, args) => {
         case 'din':
         case 'dinner':
 
-            console.log(loadDB(dbClient, "SELECT * FROM supper").length);
+            dbClient.connect();
+            dbClient.query(query, (err, res) => {
+                if (err) throw err;
+                console.log(res.rows.length);
+            });
+            dbClient.end();
+            //loadDB(dbClient, "SELECT * FROM supper");
 
             let time = args.shift();
             if (time == 'tonight') {
