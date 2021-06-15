@@ -24,7 +24,10 @@ cmd = async (client, message, args) => {
 
             dbClient.connect();
             dbClient.query("SELECT * FROM supper", (err, res) => {
-                if (err) throw err;
+                if (err) {
+                    console.error(err);
+                    throw err;
+                }
                 console.log(res.rows.length);
             });
             dbClient.end();
