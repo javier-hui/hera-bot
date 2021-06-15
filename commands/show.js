@@ -33,6 +33,7 @@ cmd = async (client, message, args) => {
     for (let member of members) {
         if (args.includes(member.name)) {
             const query = `SELECT weekday, dinner, at_home, reason FROM supper WHERE name = ${member.name};`;
+            console.log(query);
             const res = await loadDB(query);
 
             if (res == undefined) return;
