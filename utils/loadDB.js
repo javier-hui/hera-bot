@@ -21,7 +21,7 @@ module.exports = {
             res = await client.query(query);
         } finally {
             client.release();
-            console.log(res);
+            console.log(res.rows);
             return res;
         }
     }
