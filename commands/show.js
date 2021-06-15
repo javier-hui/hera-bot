@@ -22,8 +22,7 @@ cmd = async (client, message, args) => {
         case 'din':
         case 'dinner':
 
-            let rows = loadDB(dbClient, "SELECT * FROM supper");
-            console.log(rows.length);
+            console.log(loadDB(dbClient, "SELECT * FROM supper").length);
 
             let time = args.shift();
             if (time == 'tonight') {
