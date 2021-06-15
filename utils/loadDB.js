@@ -14,7 +14,7 @@ pool.on('error', (err) => {
 });
 
 module.exports = {
-    loadDB: await (async (query) => {
+    loadDB: async (query) => {
         const client = await pool.connect();
         let res;
         try {
@@ -24,6 +24,6 @@ module.exports = {
             console.log(res);
             return res;
         }
-    })().catch(err => console.log(err.stack))
+    }
 
 }
