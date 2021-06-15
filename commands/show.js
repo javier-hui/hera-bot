@@ -1,8 +1,8 @@
 const Discord = require('discord.js'),
 
     { loadDB } = require('../utils/loadDB'),
-    { DatabaseClient } = require('pg'),
-    dbClient = new DatabaseClient({
+    { Client } = require('pg'),
+    dbClient = new Client({
         connectionString: process.env.DATABASE_URL,
         ssl: {
             rejectUnauthorized: false
