@@ -12,7 +12,7 @@ cmd = async (client, message, args) => {
     if (args.includes('dinner') || args.includes('din')) { dinner = true; word++; }
     if (args.includes('tomorrow') || args.includes('tmr')) { weekday = (weekday + 1) % 7; word += 2; }
 
-    const query = `SELECT DISTINCT name, at_home, reason FROM supper WHERE weekday = ${weekday} AND dinner = ${dinner};`;
+    const query = `SELECT DISTINCT name, at_home, reason FROM meal WHERE weekday = ${weekday} AND dinner = ${dinner};`;
     console.log(`query: ${query}`);
     const res = await loadDB(query);
     if (res == undefined) return;

@@ -29,7 +29,7 @@ cmd = async (client, message, args) => {
     if (reasonArg != null) reason = reasonArg[1];
     else if (!at_home) return message.channel.send("dude, give me a reason why u dont eat at home!");
 
-    const query = `UPDATE supper SET at_home = ${at_home}, reason = '${reason}' WHERE name = '${name}' AND weekday = ${weekday} AND dinner = ${dinner};`;
+    const query = `UPDATE meal SET at_home = ${at_home}, reason = '${reason}' WHERE name = '${name}' AND weekday = ${weekday} AND dinner = ${dinner};`;
     console.log(`query: ${query}`);
     const res = await loadDB(query);
 
