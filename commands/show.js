@@ -19,8 +19,9 @@ cmd = async (client, message, args) => {
     const query = `SELECT weekday, dinner, at_home, reason FROM supper WHERE name = '${member.name}';`;
     const res = await loadDB(query);
 
+    console.log(`query: ${query} executed`);
     if (res == undefined) return;
-    console.log(`query executed, ${res.rows.length} rows returned`);
+    console.log(res.rows);
 
     let embed = {
         color: 0x92207b,
