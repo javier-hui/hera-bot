@@ -10,8 +10,7 @@ module.exports = async(client, message) => {
     console.log(`command: ${message.command}, initiated by ${message.author.username}` + (args.length ? ` (args: ${args})` : ``));
 
     const commandfile = client.commands.get(message.command.toString().toLowerCase()) || client.commands.get(client.aliases.get(message.command.toString().toLowerCase()));
-	if (commandfile) {
-		commandfile.run(client, message, args);
-	}	
+	if (commandfile) commandfile.run(client, message, args);
+    else client.commands.get('error').run(client, message);
 
 }
