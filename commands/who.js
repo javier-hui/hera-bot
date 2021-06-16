@@ -13,9 +13,8 @@ cmd = async (client, message, args) => {
     if (args.includes('tomorrow') || args.includes('tmr')) { weekday = (weekday + 1) % 7; word += 2; }
 
     const query = `SELECT DISTINCT name, at_home, reason FROM supper WHERE weekday = ${weekday} AND dinner = ${dinner};`;
+    console.log(`query: ${query}`);
     const res = await loadDB(query);
-
-    console.log(`query: ${query} executed`);
     if (res == undefined) return;
     console.log(res.rows);
 

@@ -24,13 +24,16 @@ cmd = async (client, message, args) => {
             weekday = i;
             break;
         }
-
-    let reason = /\(([^)]+)\)/.exec(args.join(' '))[1] || "at home :house:";
+    
+    let reasonArg = /\(([^)]+)\)/.exec(args.join(' ')), reason = "at home :house:";
+    if (reasonArg != null) reason = reasonArg[1];
+    else if (!at_home) return message.channel.send("dude, give me a reason why u dont eat at home!");
 
     const query = `UPDATE supper SET at_home = ${at_home}, reason = '${reason}' FROM supper WHERE name = '${name}' AND weekday = ${weekday} AND dinner = ${dinner};`;
+    console.log(`query: ${query}`);
     const res = await loadDB(query);
 
-    console.log(`query: ${query} executed`);
+    console.log(executed);
     if (res == undefined) return;
 
     let embed = {

@@ -17,9 +17,8 @@ cmd = async (client, message, args) => {
     }
 
     const query = `SELECT weekday, dinner, at_home, reason FROM supper WHERE name = '${member.name}';`;
+    console.log(`query: ${query}`);
     const res = await loadDB(query);
-
-    console.log(`query: ${query} executed`);
     if (res == undefined) return;
     console.log(res.rows);
 
