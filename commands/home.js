@@ -25,7 +25,7 @@ cmd = async (client, message, args) => {
             break;
         }
 
-    let reason = /\(([^)]+)\)/.exec(args.join(' ')) || "at home :house:";
+    let reason = /\(([^)]+)\)/.exec(args.join(' '))[1] || "at home :house:";
 
     const query = `UPDATE supper SET at_home = ${at_home}, reason = '${reason}' FROM supper WHERE name = '${name}' AND weekday = ${weekday} AND dinner = ${dinner};`;
     const res = await loadDB(query);
