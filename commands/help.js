@@ -7,10 +7,10 @@ cmd = async (client, message) => {
         author: {
             name: 'hera',
             icon_url: 'https://cdn.discordapp.com/avatars/854011989726199828/3a31c4e747041dc5d5ee7adc85f6fede.webp?size=128',
-            url: 'https://youtu.be/dQw4w9WgXcQ',
+            url: 'https://github.com/javier-hui/hera-bot',
         },
         title: "how to use me",
-        description: `if u have more questions, ask javier :)`,
+        description: `this bot is made by javier, so if u have more questions, feel free to ask him :)`,
         fields: [
             {
                 name: "hera who [lunch/dinner] [today/tonight/tomorrow]",
@@ -21,11 +21,15 @@ cmd = async (client, message) => {
                 value: "shows whether the person would eat at home or not for this week. shows yourself by default.\ne.g. `hera show javier`"
             },
             {
-                name: "hera home/no lunch/dinner weekday (reason) -NOT DONE-",
+                name: "hera home/no lunch/dinner weekday (reason)",
                 value: "rewrites the rule for that weekday regularly, if not home pls provide reason\ne.g. `hera no dinner friday (party)`\ne.g. `hera home lunch tuesday`"
             },
             {
-                name: "hera [home/no] [lunch/dinner] [dd/mm] -NOT DONE-",
+                name: "-------- NOT DONE --------",
+                value: "don't use any command below this line"
+            },
+            {
+                name: "hera [home/no] [lunch/dinner] [dd/mm]",
                 value: "sets a specific rule for that day in particular\ne.g. `hera lunch 13/2` will update your availability for lunch on 13/2\ne.g. `hera no dinner tonight` say this when you can't come home tonight"
             }
         ],
