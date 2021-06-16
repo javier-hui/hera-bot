@@ -30,7 +30,6 @@ cmd = async (client, message, args) => {
     const query = `UPDATE supper SET at_home = ${at_home}, reason = '${reason}' FROM supper WHERE name = '${name}' AND weekday = ${weekday} AND dinner = ${dinner};`;
     const res = await loadDB(query);
 
-    if (res == undefined) return;
     console.log(`query executed, ${res}`);
 
     let embed = {
