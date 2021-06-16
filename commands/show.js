@@ -3,10 +3,6 @@ const { loadDB } = require('../utils/loadDB'),
 
 cmd = async (client, message, args) => {
 
-    if (!args.length) {
-        return client.commands.get('error').run(client, message);
-    }
-
     let member = members.find(e => e.id == message.author.id);
     if (member == undefined) return;
 
