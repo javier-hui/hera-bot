@@ -1,4 +1,4 @@
-const prefix = process.env.PREFIX || (require('../settings.json')).prefix;
+const prefix = process.env.PREFIX || (require('../config.json')).prefix;
 
 cmd = async (client, message) => {
 

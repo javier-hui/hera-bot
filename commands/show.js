@@ -1,28 +1,5 @@
 const { loadDB } = require('../utils/loadDB'),
-    members = [
-        {
-            name: 'javier',
-            emoji: ':person_tone1_curly_hair:'
-        },
-        {
-            name: 'jun',
-            emoji: ':adult_tone1:'
-        },
-        {
-            name: 'kennice',
-            emoji: ':woman_tone1:'
-        },
-        {
-            name: 'dad',
-            emoji: ':man_tone1:'
-        },
-        {
-            name: 'mum',
-            emoji: ':woman_curly_haired_tone1:'
-        }
-    ];
-
-
+    members = require('../config.json').members;
 
 cmd = async (client, message, args) => {
 
