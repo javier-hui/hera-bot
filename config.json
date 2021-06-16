@@ -1,25 +1,30 @@
 {
-    "prefix": "hera",
     "members": [
         {
             "name": "javier",
-            "emoji": ":person_tone1_curly_hair:"
+            "emoji": ":person_tone1_curly_hair:",
+            "id": "237521987080028160"
         },
         {
             "name": "jun",
-            "emoji": ":adult_tone1:"
+            "emoji": ":adult_tone1:",
+            "id": "260211187906641920"
         },
         {
             "name": "kennice",
-            "emoji": ":woman_tone1:"
+            "emoji": ":woman_tone1:",
+            "id": "418209788661334026"
         },
         {
             "name": "dad",
-            "emoji": ":man_tone1:"
+            "emoji": ":man_tone1:",
+            "id": "729035954530025573"
         },
         {
             "name": "mum",
-            "emoji": ":woman_curly_haired_tone1:"
+            "emoji": ":woman_curly_haired_tone1:",
+            "id": "764834886766559262"
         }
-    ]
+    ],
+    "prefix": "hera"
 }

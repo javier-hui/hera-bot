@@ -14,15 +14,15 @@ cmd = async (client, message) => {
         fields: [
             {
                 name: "hera who [lunch/dinner] [today/tonight/tomorrow]",
-                value: "shows who's gonna eat at home\ne.g. `hera show dinner tonight`"
+                value: "shows who's gonna eat at home\ne.g. `hera who dinner tonight`"
             },
             {
-                name: "hera show [person] -NOT DONE-",
-                value: "shows whether the person would eat at home or not for this week\ne.g. `hera show javier`"
+                name: "hera show [person]",
+                value: "shows whether the person would eat at home or not for this week. shows yourself by default.\ne.g. `hera show javier`"
             },
             {
-                name: "hera [home/no] [lunch/dinner] [weekday] -NOT DONE-",
-                value: "rewrites the rule for that weekday regularly\ne.g. `hera no dinner friday`\ne.g. `hera no dinner tonight`"
+                name: "hera home/no lunch/dinner weekday (reason) -NOT DONE-",
+                value: "rewrites the rule for that weekday regularly, if not home pls provide reason\ne.g. `hera no dinner friday (party)`\ne.g. `hera home lunch tuesday`"
             },
             {
                 name: "hera [home/no] [lunch/dinner] [dd/mm] -NOT DONE-",

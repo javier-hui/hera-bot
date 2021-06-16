@@ -7,33 +7,38 @@ cmd = async (client, message, args) => {
         return client.commands.get('error').run(client, message);
     }
 
-    for (let member of members) {
-        if (args.includes(member.name)) {
-            const query = `SELECT weekday, dinner, at_home, reason FROM supper WHERE name = '${member.name}';`;
-            const res = await loadDB(query);
+    let member = members.find(e => e.id == message.author.id);
+    if (member == undefined) return;
 
-            if (res == undefined) return;
-            console.log(`query executed, ${res.rows.length} rows returned`);
-
-            let embed = {
-                color: 0x92207b,
-                title: `schedule for ${member.name} ${member.emoji}`,
-                description: ``,
-                timestamp: new Date()
-            }
-
-            let schedule = [{day: 'sun'}, {day: 'mon'}, {day: 'tue'}, {day: 'wed'}, {day: 'thu'}, {day: 'fri'}, {day: 'sat'}];
-            for (const row of res.rows) {
-                if (row.dinner) schedule[row.weekday].dinner = row.reason;
-                else schedule[row.weekday].lunch = row.reason;
-            }
-            for (const item of schedule) {
-                embed.description += `**${item.day}:** lunch ${item.lunch} | dinner ${item.dinner}\n`
-            }
-
-            message.channel.send({ embed: embed });
+    for (let m of members) {
+        if (args.includes(m.name)) {
+            member = m;
         }
     }
+
+    const query = `SELECT weekday, dinner, at_home, reason FROM supper WHERE name = '${member.name}';`;
+    const res = await loadDB(query);
+
+    if (res == undefined) return;
+    console.log(`query executed, ${res.rows.length} rows returned`);
+
+    let embed = {
+        color: 0x92207b,
+        title: `schedule for ${member.name} ${member.emoji}`,
+        description: ``,
+        timestamp: new Date()
+    }
+
+    let schedule = [{ day: 'sun' }, { day: 'mon' }, { day: 'tue' }, { day: 'wed' }, { day: 'thu' }, { day: 'fri' }, { day: 'sat' }];
+    for (const row of res.rows) {
+        if (row.dinner) schedule[row.weekday].dinner = row.reason;
+        else schedule[row.weekday].lunch = row.reason;
+    }
+    for (const item of schedule) {
+        embed.description += `**${item.day}:** lunch ${item.lunch} | dinner ${item.dinner}\n`
+    }
+
+    message.channel.send({ embed: embed });
 
 }
 
