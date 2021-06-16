@@ -13,24 +13,24 @@ cmd = async (client, message) => {
         description: `this bot is made by javier, so if u have more questions, feel free to ask him :)`,
         fields: [
             {
-                name: "hera who [lunch/dinner] [today/tonight/tomorrow]",
+                name: "hera who `lunch/dinner` `today/tonight/tomorrow`",
                 value: "shows who's gonna eat at home\ne.g. `hera who dinner tonight`"
             },
             {
-                name: "hera show [person]",
+                name: "hera show `person`",
                 value: "shows whether the person would eat at home or not for this week. shows yourself by default.\ne.g. `hera show javier`"
             },
             {
-                name: "hera home/no lunch/dinner weekday (reason)",
-                value: "rewrites the rule for that weekday regularly, if not home pls provide reason\ne.g. `hera no dinner friday (party)`\ne.g. `hera home lunch tuesday`"
+                name: "hera home `lunch/dinner` all `weekday` (`reason`)",
+                value: "rewrites the rule for that weekday regularly, if not home pls provide reason\ne.g. `hera no dinner all friday (party)`"
             },
             {
                 name: "-------- NOT DONE --------",
                 value: "don't use any command below this line"
             },
             {
-                name: "hera [home/no] [lunch/dinner] [dd/mm]",
-                value: "sets a specific rule for that day in particular\ne.g. `hera lunch 13/2` will update your availability for lunch on 13/2\ne.g. `hera no dinner tonight` say this when you can't come home tonight"
+                name: "hera [home/no] [lunch/dinner] [dd/mm] (reason)",
+                value: "sets a specific rule for that day in particular\ne.g. `hera home lunch 13/2` will update your availability for lunch on 13/2\ne.g. `hera no dinner tonight (eat with colleagues)` say this when you can't come home tonight"
             }
         ],
         timestamp: new Date()
