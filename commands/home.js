@@ -52,7 +52,7 @@ cmd = async (client, message, args) => {
     else {
         const [dom, month, year] = args.shift().split('/'),
             date = new Date(year || (new Date).getFullYear(), month - 1, dom);
-        if (typeof dom != 'number' || typeof month != 'number' || dom <= 0 || dom > 31 || month <= 0 || month > 12) return client.commands.get('error').run(client, message);
+        if (isNaN(dom) || isNaN(month) || dom <= 0 || dom > 31 || month <= 0 || month > 12) return client.commands.get('error').run(client, message);
 
         let reasonArg = /\(([^)]+)\)/.exec(args.join(' '));
         if (reasonArg != null) reason = reasonArg[1];
