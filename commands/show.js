@@ -30,7 +30,8 @@ cmd = async (client, message, args) => {
     for (const row of res.rows) {
         if (row.dinner) week[row.weekday].dinner = row.reason;
         else week[row.weekday].lunch = row.reason;
-        const newDate = (new Date()).setDate(now.getDate() + Math.abs(row.weekday - now.getDay()));
+        let newDate = new Date;
+        newDate.setDate(now.getDate() + Math.abs(row.weekday - now.getDay()));
         week[row.weekday].dom = newDate.getDate();
         week[row.weekday].month = newDate.getMonth();
     }
