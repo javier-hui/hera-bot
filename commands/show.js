@@ -1,10 +1,10 @@
 const { loadDB } = require('../utils/loadDB'),
-    members = require('../config.json').members;
+    members = require('../global.json').members;
 
 cmd = async (client, message, args) => {
 
     let member = members.find(e => e.id == message.author.id);
-    if (member == undefined) return;
+    if (member == undefined) return client.commands.get('error').run(client, message);
 
     for (let m of members) {
         if (args.includes(m.name)) {

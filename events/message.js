@@ -1,7 +1,7 @@
 module.exports = async(client, message) => {
 	if (message.author.bot) return;
 
-    const prefix = process.env.PREFIX || (require('../config.json')).prefix;
+    const prefix = process.env.PREFIX || (require('../global.json')).prefix;
 
     // this method works if you want the prefix to be a word
     const args = message.content.split(' ');

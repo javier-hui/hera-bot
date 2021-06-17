@@ -1,5 +1,5 @@
 const { loadDB } = require('../utils/loadDB'),
-    members = require('../config.json').members;
+    members = require('../global.json').members;
 
 cmd = async (client, message, args) => {
 
