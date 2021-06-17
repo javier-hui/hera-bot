@@ -31,7 +31,10 @@ cmd = async (client, message, args) => {
 
     for (const row of res.rows) {
 
-        const exceptionQuery = `SELECT at_home, reason FROM meal_exception WHERE name = '${member.name}' AND date = '${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}' AND dinner = ${row.dinner};`;
+        let newDate = new Date;
+        newDate.setDate(now.getDate() + (row.weekday < now.getDay() ? row.weekday + 7 : row.weekday) - now.getDay());
+
+        const exceptionQuery = `SELECT at_home, reason FROM meal_exception WHERE name = '${member.name}' AND date = '${newDate.getDate()}/${newDate.getMonth() + 1}/${newDate.getFullYear()}' AND dinner = ${row.dinner};`;
         console.log(`query: ${exceptionQuery}`);
         const eRes = await loadDB(exceptionQuery);
         if (!(eRes == undefined || eRes.rows.length == 0)) {
@@ -42,8 +45,7 @@ cmd = async (client, message, args) => {
 
         if (row.dinner) week[row.weekday].dinner = row.reason;
         else week[row.weekday].lunch = row.reason;
-        let newDate = new Date;
-        newDate.setDate(now.getDate() + (row.weekday < now.getDay() ? row.weekday + 7 : row.weekday) - now.getDay());
+
         week[row.weekday].dom = newDate.getDate();
         week[row.weekday].month = newDate.getMonth() + 1;
     }
