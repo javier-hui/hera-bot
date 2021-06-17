@@ -31,7 +31,7 @@ cmd = async (client, message, args) => {
 
     for (const row of res.rows) {
 
-        const exceptionQuery = `SELECT at_home, reason FROM meal WHERE name = '${member.name}' AND date = '${now.getDate()}/${now.getMonth + 1()}/${now.getFullYear()}' AND dinner = ${row.dinner};`;
+        const exceptionQuery = `SELECT at_home, reason FROM meal WHERE name = '${member.name}' AND date = '${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}' AND dinner = ${row.dinner};`;
         console.log(`query: ${exceptionQuery}`);
         const eRes = await loadDB(exceptionQuery);
         if (!(eRes == undefined || eRes.rows.length == 0)) {
