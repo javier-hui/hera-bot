@@ -31,9 +31,9 @@ cmd = async (client, message, args) => {
         if (row.dinner) week[row.weekday].dinner = row.reason;
         else week[row.weekday].lunch = row.reason;
         let newDate = new Date;
-        newDate.setDate(now.getDate() + Math.abs(row.weekday - now.getDay()));
+        newDate.setDate(now.getDate() + (row.weekday < now.getDay() ? row.weekday+7 : row.weekday) - now.getDay());
         week[row.weekday].dom = newDate.getDate();
-        week[row.weekday].month = newDate.getMonth();
+        week[row.weekday].month = newDate.getMonth()+1;
     }
     for (let i = 0; i < now.getDay(); i++) week.push(week.shift());
     for (const item of week) {
