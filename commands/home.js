@@ -58,7 +58,7 @@ cmd = async (client, message, args) => {
         if (reasonArg != null) reason = reasonArg[1];
         else if (!at_home) return message.channel.send("dude, give me a reason why u dont eat at home!");
 
-        const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${dom}/${month-1}/${year || (new Date).getFullYear()}', ${dinner}, ${at_home}, '${reason}');`
+        const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${dom}/${month}/${year || (new Date).getFullYear()}', ${dinner}, ${at_home}, '${reason}');`
         console.log(`query: ${query}`);
         const res = await loadDB(query);
 
