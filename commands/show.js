@@ -1,5 +1,6 @@
 const { loadDB } = require('../utils/loadDB'),
     members = require('../global.json').members;
+    week = require('../global.json').week;
 
 cmd = async (client, message, args) => {
 
@@ -24,13 +25,13 @@ cmd = async (client, message, args) => {
         description: ``,
         timestamp: new Date()
     }
-
-    let schedule = [{ day: 'sun' }, { day: 'mon' }, { day: 'tue' }, { day: 'wed' }, { day: 'thu' }, { day: 'fri' }, { day: 'sat' }];
+    
     for (const row of res.rows) {
-        if (row.dinner) schedule[row.weekday].dinner = row.reason;
-        else schedule[row.weekday].lunch = row.reason;
+        if (row.dinner) week[row.weekday].dinner = row.reason;
+        else week[row.weekday].lunch = row.reason;
     }
-    for (const item of schedule) {
+    for (let i = 0; i < ((new Date).getDay() + 6) % 7; i++) week.push(week.shift());
+    for (const item of week) {
         embed.description += `**${item.day}:** lunch ${item.lunch} | dinner ${item.dinner}\n`
     }
 
