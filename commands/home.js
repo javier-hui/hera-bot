@@ -1,6 +1,8 @@
 const { loadDB } = require('../utils/loadDB'),
     members = require('../global.json').members;
 
+let week = require('../global.json').week;
+
 cmd = async (client, message, args) => {
 
     if (!args.length) {
@@ -15,15 +17,6 @@ cmd = async (client, message, args) => {
     if (args[0] == 'all') {
         args.shift();
         let weekday = (args.shift().toLowerCase());
-        let week = [
-            { long: 'sunday', short: 'sun' },
-            { long: 'monday', short: 'mon' },
-            { long: 'tuesday', short: 'tue' },
-            { long: 'wednesday', short: 'wed' },
-            { long: 'thursday', short: 'thu' },
-            { long: 'friday', short: 'fri' },
-            { long: 'saturday', short: 'sat' }
-        ];
         for (let i = 0; i < week.length; i++)
             if (weekday == week[i].long || weekday == week[i].short) {
                 weekday = i;
@@ -67,7 +60,7 @@ cmd = async (client, message, args) => {
         let embed = {
             color: 0x00ff00,
             title: `added a new exception record for ${name}`,
-            description: `you have all your ${dinner ? 'dinner' : 'lunch'} ${at_home ? 'at home' : 'outside'} on ${dom}/${month}, reason: ${reason}`,
+            description: `you will have your ${dinner ? 'dinner' : 'lunch'} ${at_home ? 'at home' : 'outside'} on ${dom}/${month}, reason: ${reason}`,
             timestamp: new Date()
         };
 
