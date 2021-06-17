@@ -7,10 +7,13 @@ cmd = async (client, message, args) => {
         return client.commands.get('error').run(client, message);
     }
 
-    let weekday = (new Date).getDay(), dinner = false, word = 0;
+    let date = new Date();
+    dinner = false, word = 0;
 
     if (args.includes('dinner') || args.includes('din')) { dinner = true; word++; }
-    if (args.includes('tomorrow') || args.includes('tmr')) { weekday = (weekday + 1) % 7; word += 2; }
+    if (args.includes('tomorrow') || args.includes('tmr')) { date.setDate(date.getDate() + 1); word += 2; }
+
+    let weekday = date.getDay();
 
     const query = `SELECT DISTINCT name, at_home, reason FROM meal WHERE weekday = ${weekday} AND dinner = ${dinner};`;
     console.log(`query: ${query}`);
@@ -38,8 +41,21 @@ cmd = async (client, message, args) => {
     }
 
     for (let member of members) {
-        let value = `${member.emoji} **${member.name}** - ${res.rows.find(e => e.name == member.name).reason}\n`;
-        if (res.rows.find(e => e.name == member.name).at_home) embed.fields[0].value += value;
+        
+        let at_home = res.rows.find(e => e.name == member.name).at_home,
+            reason = res.rows.find(e => e.name == member.name).reason;
+
+        const exceptionQuery = `SELECT at_home, reason FROM meal_exception WHERE name = '${member.name}' AND date = '${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}' AND dinner = ${dinner};`;
+        console.log(`query: ${exceptionQuery}`);
+        const eRes = await loadDB(exceptionQuery);
+        if (!(eRes == undefined || eRes.rows.length == 0)) {
+            console.log(eRes.rows[0]);
+            at_home = eRes.rows[0].at_home;
+            reason = eRes.rows[0].reason;
+        }
+
+        let value = `${member.emoji} **${member.name}** - ${reason}\n`;
+        if (at_home) embed.fields[0].value += value;
         else embed.fields[1].value += value;
     }
     message.channel.send({ embed: embed });
