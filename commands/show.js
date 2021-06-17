@@ -26,13 +26,17 @@ cmd = async (client, message, args) => {
         timestamp: new Date()
     }
     
+    const now = new Date();
     for (const row of res.rows) {
         if (row.dinner) week[row.weekday].dinner = row.reason;
         else week[row.weekday].lunch = row.reason;
+        const newDate = (new Date()).setDate(now.getDate() + Math.abs(row.weekday - now.getDay()));
+        week[row.weekday].dom = newDate.getDate();
+        week[row.weekday].month = newDate.getMonth();
     }
-    for (let i = 0; i < ((new Date).getDay() + 6) % 7; i++) week.push(week.shift());
+    for (let i = 0; i < now.getDay(); i++) week.push(week.shift());
     for (const item of week) {
-        embed.description += `**${item.day}:** lunch ${item.lunch} | dinner ${item.dinner}\n`
+        embed.description += `**${item.dom}/${item.month} (${item.short}):** lunch ${item.lunch} | dinner ${item.dinner}\n`
     }
 
     message.channel.send({ embed: embed });
