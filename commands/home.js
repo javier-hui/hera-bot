@@ -33,7 +33,7 @@ cmd = async (client, message, args) => {
         console.log(`query: ${query}`);
         const res = await loadDB(query);
 
-        if (res == undefined) return;
+        if (res == undefined) return client.commands.get('errordb').run(client, message);
 
         let embed = {
             color: 0x00ff00,
@@ -57,13 +57,13 @@ cmd = async (client, message, args) => {
         const prequery = `SELECT COUNT(*) FROM meal_exception WHERE name = '${name}' AND date = '${date}' AND dinner = ${dinner};`
         console.log(`prequery: ${prequery}`);
         const preres = await loadDB(prequery);
-        if (preres == undefined) return message.channel.send("server error");
+        if (preres == undefined) return client.commands.get('errordb').run(client, message);
         if (preres.rows[0].count == 0) {
 
             const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${date}', ${dinner}, ${at_home}, '${reason}');`
             console.log(`query: ${query}`);
             const res = await loadDB(query);
-            if (res == undefined) return message.channel.send("server error");
+            if (res == undefined) return client.commands.get('errordb').run(client, message);
 
         }
         else {
@@ -71,7 +71,7 @@ cmd = async (client, message, args) => {
             const query = `UPDATE meal_exception SET at_home = ${at_home}, reason = '${reason}' WHERE name = '${name}' AND date = '${date}' AND dinner = ${dinner};`
             console.log(`query: ${query}`);
             const res = await loadDB(query);
-            if (res == undefined) return message.channel.send("server error");
+            if (res == undefined) return client.commands.get('errordb').run(client, message);
         }
 
         let embed = {

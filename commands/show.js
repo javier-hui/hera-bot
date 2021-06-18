@@ -7,7 +7,7 @@ cmd = async (client, message, args) => {
     for (let e of global_week) week.push(e);
 
     let member = members.find(e => e.id == message.author.id);
-    if (member == undefined) return client.commands.get('error').run(client, message);
+    if (member == undefined) return client.commands.get('errordb').run(client, message);
 
     for (let m of members) {
         if (args.includes(m.name)) {
@@ -18,7 +18,7 @@ cmd = async (client, message, args) => {
     const query = `SELECT weekday, dinner, at_home, reason FROM meal WHERE name = '${member.name}';`;
     console.log(`query: ${query}`);
     const res = await loadDB(query);
-    if (res == undefined) return;
+    if (res == undefined) return client.commands.get('errordb').run(client, message);;
     console.log(res.rows);
 
     const now = new Date();
@@ -39,7 +39,8 @@ cmd = async (client, message, args) => {
         const exceptionQuery = `SELECT at_home, reason FROM meal_exception WHERE name = '${member.name}' AND date = '${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}' AND dinner = ${row.dinner};`;
         console.log(`query: ${exceptionQuery}`);
         const eRes = await loadDB(exceptionQuery);
-        if (!(eRes == undefined || eRes.rows.length == 0)) {
+        if (eRes == undefined) client.commands.get('errordb').run(client, message);
+        if (eRes.rows.length != 0) {
             console.log(eRes.rows[0]);
             row.at_home = eRes.rows[0].at_home;
             row.reason = eRes.rows[0].reason;
