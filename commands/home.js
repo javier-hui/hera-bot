@@ -49,8 +49,8 @@ cmd = async (client, message, args) => {
 
  // add meal exception
     else {
-        let date = new Date(), dateStr = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
-        const time = args.shift(), [dom, month, year] = dateStr.split('/');
+        let date = new Date(), dateStr = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`, [dom, month, year] = dateStr.split('/');
+        const time = args.shift();
 
         if (time.includes('/')) [dom, month, year] = time.split('/');
         else {
