@@ -27,6 +27,12 @@
         }
     ],
     "prefix": "hera",
+    "timeExpressions": [
+        { "word": "today", "value": 0 },
+        { "word": "tdy", "value": 0 },
+        { "word": "tomorrow", "value": 1 },
+        { "word": "tmr", "value": 1 }
+    ],
     "week" : [
         { "long": "sunday", "short": "sun" },
         { "long": "monday", "short": "mon" },

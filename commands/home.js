@@ -1,5 +1,6 @@
 const { loadDB } = require('../utils/loadDB'),
-    members = require('../global.json').members;
+    members = require('../global.json').members,
+    timeExpressions = require('../global.json').timeExpressions;
 
 let week = require('../global.json').week;
 
@@ -7,14 +8,15 @@ cmd = async (client, message, args) => {
 
     if (!args.length) {
         return client.commands.get('error').run(client, message);
-    }
+    } // error: no args
+    
     const name = members.find(e => e.id == message.author.id).name,
         at_home = (message.command == 'home'),
         dinner = (args.shift().toLowerCase() == 'dinner');
     let reason = "at home :house:";
 
-
-    if (args[0] == 'all') { // updating default cases
+ // updating default cases
+    if (args[0] == 'all') {
         
         args.shift();
         let weekday = (args.shift().toLowerCase());
@@ -23,7 +25,7 @@ cmd = async (client, message, args) => {
                 weekday = i;
                 break;
             }
-        if (week == i) return; // typed something other than which weekday
+        if (week == i) return; // error: typed something other than which weekday
 
         let reasonArg = /\(([^)]+)\)/.exec(args.join(' '));
         if (reasonArg != null) reason = reasonArg[1];
@@ -44,23 +46,37 @@ cmd = async (client, message, args) => {
 
         message.channel.send({ embed: embed });
     }
-    else { // add exception
-        
-        const [dom, month, year] = args.shift().split('/'),
-            date = `${dom}/${month}/${year || (new Date).getFullYear()}`;
-        if (isNaN(dom) || isNaN(month) || dom <= 0 || dom > 31 || month <= 0 || month > 12) return client.commands.get('error').run(client, message);
+
+ // add meal exception
+    else {
+        let date = new Date(), dateStr = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
+        const time = args.shift();
+        if (time.includes('/')) {
+            const [dom, month, year] = time.split('/');
+            dateStr = `${dom}/${month}/${year || date.getFullYear()}`;
+            if (isNaN(dom) || isNaN(month) || dom <= 0 || dom > 31 || month <= 0 || month > 12) return client.commands.get('error').run(client, message);
+        }
+        else {
+            for (let e of timeExpressions) {
+                if (time == e.word) {
+                    date.setDate(date.getDate() + e.value);
+                    break;
+                }
+            }
+
+        }
 
         let reasonArg = /\(([^)]+)\)/.exec(args.join(' '));
         if (reasonArg != null) reason = reasonArg[1];
-        else if (!at_home) return message.channel.send("dude, give me a reason why u dont eat at home!");
+        else if (!at_home) return message.channel.send("dude, give me a reason why u dont eat at home!"); // error: no reason
 
-        const prequery = `SELECT COUNT(*) FROM meal_exception WHERE name = '${name}' AND date = '${date}' AND dinner = ${dinner};`
+        const prequery = `SELECT COUNT(*) FROM meal_exception WHERE name = '${name}' AND date = '${dateStr}' AND dinner = ${dinner};`
         console.log(`prequery: ${prequery}`);
         const preres = await loadDB(prequery);
         if (preres == undefined) return client.commands.get('errordb').run(client, message);
         if (preres.rows[0].count == 0) {
 
-            const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${date}', ${dinner}, ${at_home}, '${reason}');`
+            const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${dateStr}', ${dinner}, ${at_home}, '${reason}');`
             console.log(`query: ${query}`);
             const res = await loadDB(query);
             if (res == undefined) return client.commands.get('errordb').run(client, message);
@@ -68,7 +84,7 @@ cmd = async (client, message, args) => {
         }
         else {
 
-            const query = `UPDATE meal_exception SET at_home = ${at_home}, reason = '${reason}' WHERE name = '${name}' AND date = '${date}' AND dinner = ${dinner};`
+            const query = `UPDATE meal_exception SET at_home = ${at_home}, reason = '${reason}' WHERE name = '${name}' AND date = '${dateStr}' AND dinner = ${dinner};`
             console.log(`query: ${query}`);
             const res = await loadDB(query);
             if (res == undefined) return client.commands.get('errordb').run(client, message);
