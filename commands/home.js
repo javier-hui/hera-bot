@@ -14,7 +14,8 @@ cmd = async (client, message, args) => {
     let reason = "at home :house:";
 
 
-    if (args[0] == 'all') {
+    if (args[0] == 'all') { // updating default cases
+        
         args.shift();
         let weekday = (args.shift().toLowerCase());
         for (let i = 0; i < week.length; i++)
@@ -43,23 +44,35 @@ cmd = async (client, message, args) => {
 
         message.channel.send({ embed: embed });
     }
-    else {
+    else { // add exception
+        
         const [dom, month, year] = args.shift().split('/'),
-            date = new Date(year || (new Date).getFullYear(), month - 1, dom);
+            date = `${dom}/${month}/${year || (new Date).getFullYear()}`;
         if (isNaN(dom) || isNaN(month) || dom <= 0 || dom > 31 || month <= 0 || month > 12) return client.commands.get('error').run(client, message);
 
         let reasonArg = /\(([^)]+)\)/.exec(args.join(' '));
         if (reasonArg != null) reason = reasonArg[1];
         else if (!at_home) return message.channel.send("dude, give me a reason why u dont eat at home!");
 
-        const selectquery = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${dom}/${month}/${year || (new Date).getFullYear()}', ${dinner}, ${at_home}, '${reason}');`
-        
+        const prequery = `SELECT COUNT(*) FROM meal_exception WHERE name = '${name}', date = '${date}', dinner = ${dinner});`
+        console.log(`prequery: ${prequery}`);
+        const preres = await loadDB(prequery);
+        if (preres == undefined) return message.channel.send("server error");
+        if (preres.rows.count == 0) {
 
-        const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${dom}/${month}/${year || (new Date).getFullYear()}', ${dinner}, ${at_home}, '${reason}');`
-        console.log(`query: ${query}`);
-        const res = await loadDB(query);
+            const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${date}', ${dinner}, ${at_home}, '${reason}');`
+            console.log(`query: ${query}`);
+            const res = await loadDB(query);
+            if (res == undefined) return message.channel.send("server error");
 
-        if (res == undefined) return;
+        }
+        else {
+
+            const query = `UPDATE meal_exception SET (at_home = ${at_home}, reason = '${reason}') WHERE name = '${name}', date = '${date}', dinner = ${dinner});`
+            console.log(`query: ${query}`);
+            const res = await loadDB(query);
+            if (res == undefined) return message.channel.send("server error");
+        }
 
         let embed = {
             color: 0x00ff00,

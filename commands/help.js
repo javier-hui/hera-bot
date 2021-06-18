@@ -25,12 +25,12 @@ cmd = async (client, message) => {
                 value: "rewrites the rule for that weekday regularly, if not home pls provide reason\ne.g. `hera no dinner all friday (party)`"
             },
             {
-                name: "-------- NOT DONE --------",
-                value: "don't use any command below this line"
-            },
-            {
                 name: "hera [home/no] [lunch/dinner] [dd/mm] (reason)",
                 value: "sets a specific rule for that day in particular\ne.g. `hera home lunch 13/2` will update your availability for lunch on 13/2\ne.g. `hera no dinner tonight (eat with colleagues)` say this when you can't come home tonight"
+            },
+            {
+                name: "-------- NOT DONE --------",
+                value: "don't use any command below this line"
             }
         ],
         timestamp: new Date()
