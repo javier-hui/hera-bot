@@ -1,8 +1,10 @@
 const { loadDB } = require('../utils/loadDB'),
-    members = require('../global.json').members;
+    members = require('../global.json').members,
+    global_week = require(('../global.json')).week;
 
 cmd = async (client, message, args) => {
-    let week = require(('../global.json')).week;
+    let week = [];
+    for (e in global_week) week.push(e);
 
     let member = members.find(e => e.id == message.author.id);
     if (member == undefined) return client.commands.get('error').run(client, message);
