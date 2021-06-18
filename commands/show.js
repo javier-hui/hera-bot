@@ -4,7 +4,7 @@ const { loadDB } = require('../utils/loadDB'),
 
 cmd = async (client, message, args) => {
     let week = [];
-    for (e in global_week) week.push(e);
+    for (let e of global_week) week.push(e);
 
     let member = members.find(e => e.id == message.author.id);
     if (member == undefined) return client.commands.get('error').run(client, message);
