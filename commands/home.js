@@ -58,8 +58,7 @@ cmd = async (client, message, args) => {
         console.log(`prequery: ${prequery}`);
         const preres = await loadDB(prequery);
         if (preres == undefined) return message.channel.send("server error");
-        console.log(preres.rows);
-        if (preres.rows.count == 0) {
+        if (preres.rows[0].count == 0) {
 
             const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${date}', ${dinner}, ${at_home}, '${reason}');`
             console.log(`query: ${query}`);
@@ -69,7 +68,7 @@ cmd = async (client, message, args) => {
         }
         else {
 
-            const query = `UPDATE meal_exception SET (at_home = ${at_home}, reason = '${reason}') WHERE name = '${name}' AND date = '${date}' AND dinner = ${dinner};`
+            const query = `UPDATE meal_exception SET at_home = ${at_home}, reason = '${reason}' WHERE name = '${name}' AND date = '${date}' AND dinner = ${dinner};`
             console.log(`query: ${query}`);
             const res = await loadDB(query);
             if (res == undefined) return message.channel.send("server error");
