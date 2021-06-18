@@ -50,12 +50,9 @@ cmd = async (client, message, args) => {
  // add meal exception
     else {
         let date = new Date(), dateStr = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`;
-        const time = args.shift();
-        if (time.includes('/')) {
-            const [dom, month, year] = time.split('/');
-            dateStr = `${dom}/${month}/${year || date.getFullYear()}`;
-            if (isNaN(dom) || isNaN(month) || dom <= 0 || dom > 31 || month <= 0 || month > 12) return client.commands.get('error').run(client, message);
-        }
+        const time = args.shift(), [dom, month, year] = dateStr.split('/');
+
+        if (time.includes('/')) [dom, month, year] = time.split('/');
         else {
             for (let e of timeExpressions) {
                 if (time == e.word) {
@@ -63,8 +60,10 @@ cmd = async (client, message, args) => {
                     break;
                 }
             }
-
+            [dom, month, year] = [date.getDate(), date.getMonth()+1, date.getFullYear()];
         }
+        dateStr = `${dom}/${month}/${year || date.getFullYear()}`;
+        if (isNaN(dom) || isNaN(month) || dom <= 0 || dom > 31 || month <= 0 || month > 12) return client.commands.get('error').run(client, message);
 
         let reasonArg = /\(([^)]+)\)/.exec(args.join(' '));
         if (reasonArg != null) reason = reasonArg[1];
