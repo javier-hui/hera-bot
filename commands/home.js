@@ -22,6 +22,7 @@ cmd = async (client, message, args) => {
                 weekday = i;
                 break;
             }
+        if (week == i) return; // typed something other than which weekday
 
         let reasonArg = /\(([^)]+)\)/.exec(args.join(' '));
         if (reasonArg != null) reason = reasonArg[1];
@@ -50,6 +51,9 @@ cmd = async (client, message, args) => {
         let reasonArg = /\(([^)]+)\)/.exec(args.join(' '));
         if (reasonArg != null) reason = reasonArg[1];
         else if (!at_home) return message.channel.send("dude, give me a reason why u dont eat at home!");
+
+        const selectquery = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${dom}/${month}/${year || (new Date).getFullYear()}', ${dinner}, ${at_home}, '${reason}');`
+        
 
         const query = `INSERT INTO meal_exception (name, date, dinner, at_home, reason) VALUES ('${name}', '${dom}/${month}/${year || (new Date).getFullYear()}', ${dinner}, ${at_home}, '${reason}');`
         console.log(`query: ${query}`);
