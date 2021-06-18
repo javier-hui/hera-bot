@@ -54,7 +54,7 @@ cmd = async (client, message, args) => {
         if (reasonArg != null) reason = reasonArg[1];
         else if (!at_home) return message.channel.send("dude, give me a reason why u dont eat at home!");
 
-        const prequery = `SELECT COUNT(*) FROM meal_exception WHERE name = '${name}', date = '${date}', dinner = ${dinner});`
+        const prequery = `SELECT COUNT(*) FROM meal_exception WHERE name = '${name}', date = '${date}', dinner = ${dinner};`
         console.log(`prequery: ${prequery}`);
         const preres = await loadDB(prequery);
         if (preres == undefined) return message.channel.send("server error");
@@ -68,7 +68,7 @@ cmd = async (client, message, args) => {
         }
         else {
 
-            const query = `UPDATE meal_exception SET (at_home = ${at_home}, reason = '${reason}') WHERE name = '${name}', date = '${date}', dinner = ${dinner});`
+            const query = `UPDATE meal_exception SET (at_home = ${at_home}, reason = '${reason}') WHERE name = '${name}', date = '${date}', dinner = ${dinner};`
             console.log(`query: ${query}`);
             const res = await loadDB(query);
             if (res == undefined) return message.channel.send("server error");
