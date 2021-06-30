@@ -14,7 +14,7 @@ cmd = async (client, message, args) => {
         at_home = (message.command == 'home'),
         dinnerstr = args.shift().toLowerCase(),
         dinner = (dinnerstr == 'dinner' || dinnerstr == 'din');
-    let reason = "at home :house:";
+    let reason = "at home";
 
  // updating default cases
     if (args[0] == 'all') {
