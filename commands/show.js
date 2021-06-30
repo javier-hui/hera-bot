@@ -61,7 +61,7 @@ cmd = async (client, message, args) => {
     }
     for (let i = 0; i < now.getDay(); i++) week.push(week.shift());
     for (const item of week) {
-        //embed.description += `**${item.dom}/${item.month} (${item.short}):** lunch: ${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason} | dinner: ${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}\n`
+        /*embed.description += `**${item.dom}/${item.month} (${item.short}):** lunch: ${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason} | dinner: ${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}\n`
         embed.fields.push({
             name: `**${item.dom}/${item.month}:**`,
             value: `**(${item.short})**`,
@@ -75,6 +75,12 @@ cmd = async (client, message, args) => {
         embed.fields.push({
             name: 'dinner',
             value: `${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}`,
+            inline: true
+        });
+*/
+        embed.fields.push({
+            name: `**${item.dom}/${item.month} (${item.short}):**`,
+            value: `lunch: ${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason}\ndinner: ${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}`,
             inline: true
         });
     }
