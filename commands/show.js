@@ -27,6 +27,7 @@ cmd = async (client, message, args) => {
         color: 0x92207b,
         title: `schedule for ${member.name} ${member.emoji}`,
         description: ``,
+        fields: [],
         timestamp: new Date()
     }
 
@@ -60,7 +61,22 @@ cmd = async (client, message, args) => {
     }
     for (let i = 0; i < now.getDay(); i++) week.push(week.shift());
     for (const item of week) {
-        embed.description += `**${item.dom}/${item.month} (${item.short}):** lunch: ${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason} | dinner: ${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}\n`
+        //embed.description += `**${item.dom}/${item.month} (${item.short}):** lunch: ${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason} | dinner: ${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}\n`
+        embed.fields.push({
+            name: `**${item.dom}/${item.month} (${item.short}):**`,
+            value: '',
+            inline: true
+        });
+        embed.fields.push({
+            name: 'lunch',
+            value: item.lunch ? `:house:` : `:person_walking:`,
+            inline: true
+        });
+        embed.fields.push({
+            name: 'dinner',
+            value: item.dinner ? ':house:' : ':person_walking:',
+            inline: true
+        });
     }
 
     message.channel.send({ embed: embed });
