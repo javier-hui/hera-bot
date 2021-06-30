@@ -12,7 +12,7 @@ cmd = async (client, message, args) => {
     
     const name = members.find(e => e.id == message.author.id).name,
         at_home = (message.command == 'home'),
-        dinner = (args.shift().toLowerCase() == 'dinner');
+        dinner = (args.shift().toLowerCase() == 'dinner' || args.shift().toLowerCase() == 'din');
     let reason = "at home :house:";
 
  // updating default cases
