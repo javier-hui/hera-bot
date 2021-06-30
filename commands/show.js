@@ -64,17 +64,17 @@ cmd = async (client, message, args) => {
         //embed.description += `**${item.dom}/${item.month} (${item.short}):** lunch: ${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason} | dinner: ${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}\n`
         embed.fields.push({
             name: `**${item.dom}/${item.month} (${item.short}):**`,
-            value: '.',
+            value: '\u200b',
             inline: true
         });
         embed.fields.push({
             name: 'lunch',
-            value: item.lunch ? `:house:` : `:person_walking:`,
+            value: `${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason}`,
             inline: true
         });
         embed.fields.push({
             name: 'dinner',
-            value: item.dinner ? ':house:' : ':person_walking:',
+            value: `${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}`,
             inline: true
         });
     }
