@@ -21,7 +21,8 @@ cmd = async (client, message, args) => {
         
         args.shift();
         let weekday = (args.shift().toLowerCase());
-        for (let i = 0; i < week.length; i++)
+        let i = 0;
+        for (i = 0; i < week.length; i++)
             if (weekday == week[i].long || weekday == week[i].short) {
                 weekday = i;
                 break;
