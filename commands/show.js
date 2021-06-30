@@ -63,8 +63,8 @@ cmd = async (client, message, args) => {
     for (const item of week) {
         //embed.description += `**${item.dom}/${item.month} (${item.short}):** lunch: ${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason} | dinner: ${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}\n`
         embed.fields.push({
-            name: `**${item.dom}/${item.month} (${item.short}):**`,
-            value: '\u200b',
+            name: `**${item.dom}/${item.month}:**`,
+            value: `**(${item.short})**`,
             inline: true
         });
         embed.fields.push({
