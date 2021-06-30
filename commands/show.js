@@ -46,15 +46,21 @@ cmd = async (client, message, args) => {
             row.reason = eRes.rows[0].reason;
         }
 
-        if (row.dinner) week[row.weekday].dinner = row.reason;
-        else week[row.weekday].lunch = row.reason;
+        if (row.dinner) {
+            week[row.weekday].dinner = row.at_home;
+            week[row.weekday].dinner_reason = row.reason;
+        }
+        else {
+            week[row.weekday].lunch = row.at_home;
+            week[row.weekday].lunch_reason = row.reason;
+        }
 
         week[row.weekday].dom = date.getDate();
         week[row.weekday].month = date.getMonth() + 1;
     }
     for (let i = 0; i < now.getDay(); i++) week.push(week.shift());
     for (const item of week) {
-        embed.description += `**${item.dom}/${item.month} (${item.short}):** lunch ${item.lunch} | dinner ${item.dinner}\n`
+        embed.description += `**${item.dom}/${item.month} (${item.short}):\n** lunch: ${item.lunch ? `:house:` : `:person_walking:`} ${item.lunch_reason} | dinner: ${item.dinner ? `:house:` : `:person_walking:`} ${item.dinner_reason}\n`
     }
 
     message.channel.send({ embed: embed });
