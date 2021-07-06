@@ -18,7 +18,7 @@ cmd = async (client, message, args) => {
     const query = `SELECT DISTINCT name, at_home, reason FROM meal WHERE weekday = ${weekday} AND dinner = ${dinner};`;
     console.log(`query: ${query}`);
     const res = await loadDB(query);
-    if (res == undefined) return;
+    if (res == undefined) return client.commands.get('errordb').run(client, message);
     console.log(res.rows);
 
     let embed = {
