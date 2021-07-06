@@ -3,27 +3,32 @@
         {
             "name": "javier",
             "emoji": ":person_tone1_curly_hair:",
-            "id": "237521987080028160"
+            "id": "237521987080028160",
+            "aliases": ["mo"]
         },
         {
             "name": "jun",
             "emoji": ":adult_tone1:",
-            "id": "260211187906641920"
+            "id": "260211187906641920",
+            "aliases": []
         },
         {
             "name": "kennice",
             "emoji": ":woman_tone1:",
-            "id": "418209788661334026"
+            "id": "418209788661334026",
+            "aliases": ["yan"]
         },
         {
             "name": "dad",
             "emoji": ":man_tone1:",
-            "id": "729035954530025573"
+            "id": "729035954530025573",
+            "aliases": ["kenny"]
         },
         {
             "name": "mum",
             "emoji": ":woman_curly_haired_tone1:",
-            "id": "764834886766559262"
+            "id": "764834886766559262",
+            "aliases": ["jessica"]
         }
     ],
     "prefix": "hera",

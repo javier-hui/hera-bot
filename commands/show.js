@@ -3,15 +3,37 @@ const { loadDB } = require('../utils/loadDB'),
     global_week = require(('../global.json')).week;
 
 cmd = async (client, message, args) => {
+    // push days of the week
     let week = [];
     for (let e of global_week) week.push(e);
-
+    // find out who is sending the message
     let member = members.find(e => e.id == message.author.id);
     if (member == undefined) return client.commands.get('errordb').run(client, message);
 
+    const showObj = args.shift();
+
+    // show grocery list
+    if (showObj == "groceries") {
+
+        let embed = {
+            color: 0x92207b,
+            title: `grocery list`,
+            description: ``,
+            fields: [],
+            timestamp: new Date()
+        }
+
+        embed.description += '1. test\n2. lorem ipsum\n3. lololol'
+
+        message.channel.send({ embed: embed });
+        return;
+    }
+
+    // show person's meal schedule for the week
     for (let m of members) {
-        if (args.includes(m.name)) {
-            member = m;
+        if (showObj == m.name) { member = m; break; }
+        for (let a of m.aliases) {
+            if (showObj == a) { member = m; break; }
         }
     }
 
