@@ -34,7 +34,7 @@ cmd = async (client, message) => {
             },
             {
                 name: "hera add groceries `item`",
-                value: "don't use any command below this line"
+                value: "adds a grocery item on the list\ne.g. `hera add groceries milk`"
             },
             {
                 name: "hera show groceries",
@@ -46,7 +46,7 @@ cmd = async (client, message) => {
             },
             {
                 name: "hera remove groceries `index`",
-                value: "removes the grocery item with the specified index from the list"
+                value: "removes the grocery item with the specified index from the list\ne.g. `hera remove groceries 2` will remove the second item on the list"
             }
         ],
         timestamp: new Date()
