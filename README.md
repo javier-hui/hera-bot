@@ -51,5 +51,6 @@ time expressions like English, such as "today", "tonight" or "tomorrow". I would
 
 ## List of ideas for future development
 
+- grocery list function
 - sending reminder messages
 - making a database for chores
