@@ -30,7 +30,7 @@ cmd = async (client, message, args) => {
         }
 
         for (const row of res.rows) {
-            embed.description += `${row.item} - by ${row.creator}`
+            embed.description += `${row.item} - by ${row.creator}\n`
         }
 
         message.channel.send({ embed: embed });
