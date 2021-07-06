@@ -17,7 +17,7 @@ cmd = async (client, message, args) => {
 
         let embed = {
             color: 0x92207b,
-            title: `grocery list`,
+            title: `grocery list :shopping_cart:`,
             description: ``,
             fields: [],
             timestamp: new Date()
