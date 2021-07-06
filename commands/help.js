@@ -31,6 +31,22 @@ cmd = async (client, message) => {
             {
                 name: "-------- NOT DONE --------",
                 value: "don't use any command below this line"
+            },
+            {
+                name: "hera add groceries `item`",
+                value: "don't use any command below this line"
+            },
+            {
+                name: "hera show groceries",
+                value: "shows grocery list"
+            },
+            {
+                name: "hera clear groceries",
+                value: "clears all groceries in the list"
+            },
+            {
+                name: "hera remove groceries `index`",
+                value: "removes the grocery item with the specified index from the list"
             }
         ],
         timestamp: new Date()
