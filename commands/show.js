@@ -15,6 +15,12 @@ cmd = async (client, message, args) => {
     // show grocery list
     if (showObj == "groceries") {
 
+        const query = `SELECT item, creator FROM groceries;`;
+        console.log(`query: ${query}`);
+        const res = await loadDB(query);
+        if (res == undefined) return client.commands.get('errordb').run(client, message);;
+        console.log(res.rows);
+
         let embed = {
             color: 0x92207b,
             title: `grocery list :shopping_cart:`,
@@ -23,7 +29,9 @@ cmd = async (client, message, args) => {
             timestamp: new Date()
         }
 
-        embed.description += '1. test\n2. lorem ipsum\n3. lololol'
+        for (const row of res.rows) {
+            embed.description += `${row.item} - by ${row.creator}`
+        }
 
         message.channel.send({ embed: embed });
         return;
