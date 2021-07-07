@@ -15,7 +15,7 @@ cmd = async (client, message, args) => {
     // show grocery list
     if (showObj == "groceries") {
 
-        const query = `SELECT * FROM groceries;`;
+        const query = `SELECT * FROM groceries ORDER BY id;`;
         console.log(`query: ${query}`);
         const res = await loadDB(query);
         if (res == undefined) return client.commands.get('errordb').run(client, message);
