@@ -21,7 +21,7 @@ cmd = async (client, message, args) => {
 
         if (index < 1 || index > preres.rows.length) return; // index out of bounds
         const id = preres.rows[index - 1].id;
-        
+
         const query = `DELETE FROM groceries WHERE id = ${id};`;
         console.log(`query: ${query}`);
         const res = await loadDB(query);
@@ -43,7 +43,7 @@ cmd = async (client, message, args) => {
 
 
 module.exports = {
-    name: 'add',
+    name: 'remove',
     aliases: [],
     run: cmd
 
