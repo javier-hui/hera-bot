@@ -30,10 +30,6 @@ cmd = async (client, message) => {
                 value: `sets a specific rule for that day in particular\ne.g. \`${prefix} home lunch 13/2\` will update your availability for lunch on 13/2\ne.g. \`${prefix} no dinner tonight (eat with colleagues)\` say this when you can't come home tonight`
             },
             {
-                name: "-------- NOT DONE --------",
-                value: "don't use any command below this line"
-            },
-            {
                 name: `${prefix} add groceries \`item\``,
                 value: `adds a grocery item on the list\ne.g. \`${prefix} add groceries 1 jug of milk\``
             },
@@ -52,6 +48,10 @@ cmd = async (client, message) => {
             {
                 name: "hera edit groceries `index`",
                 value: "allows the user to modify the grocery item with the specified index from the list\ne.g. `hera edit groceries 2` and then typing `2 jugs of milk` will change the item to that"
+            },
+            {
+                name: "-------- NOT DONE --------",
+                value: "don't use any command below this line"
             }
         ],
         timestamp: new Date()
