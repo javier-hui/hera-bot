@@ -18,7 +18,7 @@ cmd = async (client, message, args) => {
         const query = `SELECT * FROM groceries;`;
         console.log(`query: ${query}`);
         const res = await loadDB(query);
-        if (res == undefined) return client.commands.get('errordb').run(client, message);;
+        if (res == undefined) return client.commands.get('errordb').run(client, message);
         console.log(res.rows);
 
         let embed = {
@@ -30,9 +30,7 @@ cmd = async (client, message, args) => {
         }
 
         if (res.rows.length == 0) embed.description = `whoops, nothing here ~`;
-        for (const row of res.rows) {
-            embed.description += `${row.id}. ${row.item} - by ${row.creator}\n`
-        }
+        for (let i = 0; i < res.rows.length; i++) embed.description += `${i}. ${res.rows[i].item} - by ${res.rows[i].creator}\n`
 
         message.channel.send({ embed: embed });
         return;
