@@ -1,4 +1,5 @@
 const { loadDB } = require('../utils/loadDB'),
+    colors = require('../global.json').colors,
     members = require('../global.json').members;
 
 cmd = async (client, message, args) => {
@@ -19,7 +20,7 @@ cmd = async (client, message, args) => {
         if (res == undefined) return client.commands.get('errordb').run(client, message);
 
         let embed = {
-            color: 0x00ff00,
+            color: colors.success,
             title: `${member.name} cleared the grocery list`,
             description: `nice lol`,
             timestamp: new Date()

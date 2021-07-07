@@ -1,4 +1,5 @@
 const { loadDB } = require('../utils/loadDB'),
+    colors = require('../global.json').colors,
     members = require('../global.json').members,
     global_week = require(('../global.json')).week;
 
@@ -22,7 +23,7 @@ cmd = async (client, message, args) => {
         console.log(res.rows);
 
         let embed = {
-            color: 0x92207b,
+            color: colors.default,
             title: `grocery list :shopping_cart:`,
             description: ``,
             fields: [],
@@ -53,7 +54,7 @@ cmd = async (client, message, args) => {
     const now = new Date();
 
     let embed = {
-        color: 0x92207b,
+        color: colors.default,
         title: `schedule for ${member.name} ${member.emoji}`,
         description: ``,
         fields: [],

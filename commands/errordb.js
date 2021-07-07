@@ -1,7 +1,9 @@
+const colors = require('../global.json').colors;
+
 cmd = async (client, message) => {
 
     let embed = {
-        color: 0xff0000,
+        color: colors.error,
         title: "database error",
         description: `either javier typed wrong query commands, or the database server went down. either way, javier's fault :D`,
         image: {

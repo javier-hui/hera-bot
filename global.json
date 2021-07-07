@@ -1,4 +1,9 @@
 {
+    "colors": {
+        "default": "0x92207b",
+        "success": "0x00ff00",
+        "error": "0xff0000"
+    },
     "members": [
         {
             "name": "javier",

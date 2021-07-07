@@ -1,4 +1,5 @@
 const { loadDB } = require('../utils/loadDB'),
+    colors = require('../global.json').colors,
     members = require('../global.json').members,
     timeExpressions = require('../global.json').timeExpressions;
 
@@ -40,7 +41,7 @@ cmd = async (client, message, args) => {
         if (res == undefined) return client.commands.get('errordb').run(client, message);
 
         let embed = {
-            color: 0x00ff00,
+            color: colors.success,
             title: `updated record for ${name}`,
             description: `from now on, you have all your ${dinner ? 'dinner' : 'lunch'} ${at_home ? 'at home' : 'outside'} on ${week[weekday].long}s, reason: ${reason}`,
             timestamp: new Date()
@@ -92,7 +93,7 @@ cmd = async (client, message, args) => {
         }
 
         let embed = {
-            color: 0x00ff00,
+            color: colors.success,
             title: `added a new exception record for ${name}`,
             description: `you will have your ${dinner ? 'dinner' : 'lunch'} ${at_home ? 'at home' : 'outside'} on ${dom}/${month}, reason: ${reason}`,
             timestamp: new Date()

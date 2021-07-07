@@ -1,4 +1,5 @@
 const { loadDB } = require('../utils/loadDB'),
+    colors = require('../global.json').colors,
     members = require('../global.json').members;
 
 cmd = async (client, message, args) => {
@@ -22,7 +23,7 @@ cmd = async (client, message, args) => {
     console.log(res.rows);
 
     let embed = {
-        color: 0x92207b,
+        color: colors.default,
         title: `who's having ${dinner ? `dinner` : `lunch`} at home ${[`today`, `tonight`, `tomorrow`, `tomorrow night`][word]}?`,
 
         fields: [

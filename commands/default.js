@@ -1,9 +1,10 @@
-const prefix = process.env.PREFIX || (require('../global.json')).prefix;
+const colors = require('../global.json').colors,
+    prefix = process.env.PREFIX || (require('../global.json')).prefix;
 
 cmd = async (client, message) => {
 
     let embed = {
-        color: 0xff0000,
+        color: colors.error,
         title: "what 7 u say?",
         description: `${message.author} 你好似打錯咗啲嘢喎，唔識用嘅話可以打 ${prefix} help 睇返 :innocent:`,
         image: {
