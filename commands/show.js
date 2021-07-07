@@ -30,7 +30,7 @@ cmd = async (client, message, args) => {
         }
 
         if (res.rows.length == 0) embed.description = `whoops, nothing here ~`;
-        for (let i = 0; i < res.rows.length; i++) embed.description += `${i}. ${res.rows[i].item} - by ${res.rows[i].creator}\n`
+        for (let i = 0; i < res.rows.length; i++) embed.description += `${i+1}. ${res.rows[i].item} - by ${res.rows[i].creator}\n`
 
         message.channel.send({ embed: embed });
         return;
