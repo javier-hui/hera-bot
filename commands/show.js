@@ -29,6 +29,7 @@ cmd = async (client, message, args) => {
             timestamp: new Date()
         }
 
+        if (res.rows.length == 0) embed.description = `whoops, nothing here ~`;
         for (const row of res.rows) {
             embed.description += `${row.id}. ${row.item} - by ${row.creator}\n`
         }
