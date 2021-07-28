@@ -45,12 +45,12 @@ Shows the lunch/dinner schedule of the whole week for a given person (defaults t
 ## Notable features
 
 ### Time expressions:
-Since most of my family members aren't programmers, I try to make my commands as "English-like" as possible. One of my approaches to achieving this is to handle
+Since some of my family members aren't programmers, I try to make my commands as "English-like" as possible. One of my approaches to achieving this is to handle
 time expressions like English, such as "today", "tonight" or "tomorrow". I would add in additional finders to handle these words, which improves user experience.
 
 
 ## List of ideas for future development
 
-- grocery list function
+~~- grocery list function~~
 - sending reminder messages
 - making a database for chores
