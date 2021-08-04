@@ -46,12 +46,12 @@ cmd = async (client, message) => {
                 value: `removes the grocery item with the specified index from the list\ne.g. \`${prefix} remove groceries 2\` will remove the second item on the list`
             },
             {
-                name: "hera edit groceries `index`",
-                value: "allows the user to modify the grocery item with the specified index from the list\ne.g. `hera edit groceries 2` and then typing `2 jugs of milk` will change the item to that"
-            },
-            {
                 name: "-------- NOT DONE --------",
                 value: "don't use any command below this line"
+            },
+            {
+                name: "hera edit groceries `index`",
+                value: "allows the user to modify the grocery item with the specified index from the list\ne.g. `hera edit groceries 2` and then typing `2 jugs of milk` will change the item to that"
             }
         ],
         timestamp: new Date()
