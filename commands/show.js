@@ -3,6 +3,13 @@ const { loadDB } = require('../utils/loadDB'),
     members = require('../global.json').members,
     global_week = require(('../global.json')).week;
 
+findMember = (name) => {
+    for (let m of members) {
+        if (name == m.name || m.aliases.some((a) => name == a)) return m;
+    }
+    return members.find(e => e.id == message.author.id);
+}
+
 cmd = async (client, message, args) => {
     // push days of the week
     let week = [];
@@ -31,19 +38,14 @@ cmd = async (client, message, args) => {
         }
 
         if (res.rows.length == 0) embed.description = `whoops, nothing here ~`;
-        for (let i = 0; i < res.rows.length; i++) embed.description += `${i+1}. ${res.rows[i].item} - by ${res.rows[i].creator}\n`
+        for (let i = 0; i < res.rows.length; i++) embed.description += `${i + 1}. ${res.rows[i].item} - by ${res.rows[i].creator}\n`
 
         message.channel.send({ embed: embed });
         return;
     }
 
     // show person's meal schedule for the week
-    for (let m of members) {
-        if (showObj == m.name) { member = m; break; }
-        for (let a of m.aliases) {
-            if (showObj == a) { member = m; break; }
-        }
-    }
+    member = findMember(showObj);
 
     const query = `SELECT weekday, dinner, at_home, reason FROM meal WHERE name = '${member.name}';`;
     console.log(`query: ${query}`);
