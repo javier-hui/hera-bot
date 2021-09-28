@@ -59,7 +59,8 @@ cmd = async (client, message, args) => {
         if (at_home) embed.fields[0].value += value;
         else embed.fields[1].value += value;
     }
-    console.log(embed.fields);
+    if (embed.fields[0].value == '') embed.fields[0].value = 'no one!';
+    if (embed.fields[1].value == '') embed.fields[1].value = 'no one!';
     message.channel.send({ embed: embed });
 
 }
